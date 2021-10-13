@@ -18,9 +18,13 @@ async function fetchJoke() {
       Accept: 'application/json',
     },
   });
-
-  const joke = await response.json()
-  console.log(joke)
+  const data = await response.json()
+  return data
 }
 
-fetchJoke()
+async function handleClick() {
+  const { joke } = await fetchJoke();
+  jokeHolder.textContent = joke
+}
+
+jokeButton.addEventListener('click', handleClick);
